@@ -1,0 +1,16 @@
+ { 
+    "name": "python 3.9 ENV",
+    "dockerFile": "Dockerfile",
+    "appPort": [3000],
+    "settings": {
+        "workbench.colorTheme": "Cobalt2",
+        "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+		"esbenp.prettier-vscode",
+		"wesbos.theme-cobalt2",
+		"rvest.vs-code-prettier-eslint",
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+	]
+    }
