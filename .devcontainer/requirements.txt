@@ -2,3 +2,4 @@ Flask
 pandas
 plotly
 djangorestframework
+django-cors-headers

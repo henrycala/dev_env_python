@@ -30,26 +30,27 @@ def affiliate_list(request):
             else:
                 affiliate_list = [] 
         else:
-            affiliate_list = []
-            status_id = 404
+            affiliate_list = Main_affiliate.objects.all()
+            status_id = 201
         serializer = Main_affiliateSerializer(affiliate_list, many = True)
         return JsonResponse(serializer.data, status=status_id, safe=False)
     
     elif request.method == 'POST':
         data = JSONParser().parse(request)
-        if not (Type_Identitynumber.objects.filter(typeid_acronym = data['identitynumber_type']).exists()):
-            type_id1 = {
-            'typeid_description': 'test',
-            'typeid_acronym' : data['identitynumber_type']}
-            data['identitynumber_type'] = Type_Identitynumber.objects.create(**type_id1).id
-        if not (Affiliate_Gender.objects.filter(affiliate_gender = data['gender']).exists()):
-            type_gender1 = {
-            'affiliate_gender': data['identitynumber_type']}
-            data['gender'] = Affiliate_Gender.objects.create(**type_gender1).id 
-        if not (Type_Affiliate.objects.filter(type_affiliate_description = data['type_affiliate']).exists()):
-            type_aff1= {
-            'type_affiliate_description': data['type_affiliate']}
-            data['type_affiliate'] = Type_Affiliate.objects.create(**type_aff1).id
+        print(data)
+        #if not (Type_Identitynumber.objects.filter(typeid_acronym = data['identitynumber_type']).exists()):
+        #    type_id1 = {
+        #    'typeid_description': 'test',
+        #    'typeid_acronym' : data['identitynumber_type']}
+        #    data['identitynumber_type'] = Type_Identitynumber.objects.create(**type_id1).id
+        #if not (Affiliate_Gender.objects.filter(affiliate_gender = data['gender']).exists()):
+        #    type_gender1 = {
+        #    'affiliate_gender': data['identitynumber_type']}
+        #    data['gender'] = Affiliate_Gender.objects.create(**type_gender1).id 
+        #if not (Type_Affiliate.objects.filter(type_affiliate_description = data['type_affiliate']).exists()):
+        #    type_aff1= {
+        #    'type_affiliate_description': data['type_affiliate']}
+        #    data['type_affiliate'] = Type_Affiliate.objects.create(**type_aff1).id
         serializer = Main_affiliateSerializer(data = data)
         if serializer.is_valid():
             serializer.save()
